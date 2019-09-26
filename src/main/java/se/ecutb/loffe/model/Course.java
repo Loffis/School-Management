@@ -13,16 +13,15 @@ public class Course {
     private int weekDuration;
     private List<Student> students;
 
-    public Course(int id, String courseName, LocalDate startDate, int weekDuration, List<Student> students) {
+    public Course(int id, String courseName, LocalDate startDate, int weekDuration) {
         this.id = id;
         this.courseName = courseName;
         this.startDate = startDate;
         this.weekDuration = weekDuration;
-        this.students = students;
     }
 
-    public Course(String courseName, LocalDate startDate, int weekDuration, List<Student> students) {
-        this(++idCourseCounter, courseName, startDate, weekDuration, students);
+    public Course(String courseName, LocalDate startDate, int weekDuration) {
+        this(++idCourseCounter, courseName, startDate, weekDuration);
     }
 
     public int getId() {
@@ -72,7 +71,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return String.format("\n%-4s%-22s%-15tF%-10d", id, courseName, startDate, weekDuration);
+        return String.format("%n%-4s%-22s%-15tF%-10d", id, courseName, startDate, weekDuration);
     }
 
 }

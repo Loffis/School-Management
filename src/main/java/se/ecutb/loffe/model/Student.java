@@ -1,5 +1,6 @@
 package se.ecutb.loffe.model;
 
+import java.util.Objects;
 
 public class Student {
     private static int idCounter;
@@ -18,6 +19,7 @@ public class Student {
     public Student(String name, String email, String address) {
         this(++idCounter, name, email, address);
     }
+
 
     public int getId() {
         return id;
@@ -52,6 +54,21 @@ public class Student {
         return String.format("\n%-4d%-20s%-30s%-20s", id, name, email, address);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return id == student.id &&
+                Objects.equals(name, student.name) &&
+                Objects.equals(email, student.email) &&
+                Objects.equals(address, student.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, address);
+    }
 //    @Override
 //    public boolean equals(Object o /* tar in ett object*/) {
 //        // Om this jag(this) är på samma minnesadress som o

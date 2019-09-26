@@ -1,10 +1,10 @@
 package se.ecutb.loffe;
 
-import se.ecutb.loffe.model.UserInterface;
+import se.ecutb.loffe.model.MenuSystem;
 
 public class App {
     public static void main(String[] args) {
-        UserInterface go = new UserInterface();
+        MenuSystem go = new MenuSystem();
         go.run();
     }
 }

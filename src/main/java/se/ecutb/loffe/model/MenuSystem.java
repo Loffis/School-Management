@@ -12,24 +12,53 @@ import java.util.List;
 
 public class MenuSystem {
 
-
-
     private StudentDao studentDao = new StudentDaoList();
     private CourseDao courseDao = new CourseDaoList();
+    private SchoolManager schoolManager = new SchoolManager();
     private Student student;
     private Course course;
 
-    private Student s1 = new Student("Loffe", "loffe@gmail.com", "Oak road 15");
-    private Student s2 = new Student("Alvar", "abc@123.com", "Birch road 15");
-    private Student s3 = new Student("Loffe", "loffe@viverk.se", "Park Avenue");
-    private Student s4 = new Student("Lucifer", "sixsixsix@666.com", "Hell");
+    private void setupBefore() {
+
+        Student s1 = new Student("Loffe", "loffe@gmail.com", "Oak road 15");
+        Student s2 = new Student("Alvar", "abc@123.com", "Birch road 15");
+        Student s3 = new Student("Loffe", "loffe@viverk.se", "Park Avenue");
+        Student s4 = new Student("Lucifer", "sixsixsix@666.com", "Hell");
+
+        studentDao.saveStudent(s1);
+        studentDao.saveStudent(s2);
+        studentDao.saveStudent(s3);
+        studentDao.saveStudent(s4);
+
+        List<Student> studentList = new ArrayList<>();
+        studentList.add(s1);
+        studentList.add(s2);
+
+        List<Student> studentList2 = new ArrayList<>();
+        studentList2.add(s3);
+        studentList2.add(s4);
+
+        List<Student> studentList3 = new ArrayList<>();
+        studentList3.add(s1);
+        studentList3.add(s2);
+        studentList3.add(s3);
+        studentList3.add(s4);
+
+        Course c1 = new Course("Java", LocalDate.parse("2019-08-19"), 8);
+        Course c2 = new Course("Coffee", LocalDate.parse("2019-10-01"), 8);
+        Course c3 = new Course("Tea", LocalDate.parse("2019-10-01"), 4);
+        Course c4 = new Course("Tea", LocalDate.parse("2019-11-01"), 4);
+
+        courseDao.saveCourse(c1);
+        courseDao.saveCourse(c2);
+        courseDao.saveCourse(c3);
+        courseDao.saveCourse(c4);
+    }
 
 
     public void run(){
 
         setupBefore();
-
-
 
         System.out.println("\tWelcome to EC Utbildning School Management");
         boolean isRunning = true;
@@ -62,39 +91,6 @@ public class MenuSystem {
             }
         }
     }
-
-    private void setupBefore() {
-
-        studentDao.saveStudent(s1);
-        studentDao.saveStudent(s2);
-        studentDao.saveStudent(s3);
-        studentDao.saveStudent(s4);
-
-        List<Student> studentList = new ArrayList<>();
-        studentList.add(s1);
-        studentList.add(s2);
-
-        List<Student> studentList2 = new ArrayList<>();
-        studentList2.add(s3);
-        studentList2.add(s4);
-
-        List<Student> studentList3 = new ArrayList<>();
-        studentList3.add(s1);
-        studentList3.add(s2);
-        studentList3.add(s3);
-        studentList3.add(s4);
-
-        Course c1 = new Course("Java", LocalDate.parse("2019-08-19"), 8);
-        Course c2 = new Course("Coffee", LocalDate.parse("2019-10-01"), 8);
-        Course c3 = new Course("Tea", LocalDate.parse("2019-10-01"), 4);
-        Course c4 = new Course("Tea", LocalDate.parse("2019-11-01"), 4);
-
-        courseDao.saveCourse(c1);
-        courseDao.saveCourse(c2);
-        courseDao.saveCourse(c3);
-        courseDao.saveCourse(c4);
-    }
-
 
     private void search() {
         boolean isSearchMenuRunning = true;
@@ -152,9 +148,6 @@ public class MenuSystem {
                     System.out.printf("%nStudent %s", student.getName() + " added.\n");
                     System.out.printf("%n%-4s%-20s%-30s%-20s%-13s", "ID", "NAME", "EMAIL", "ADDRESS", ""
                             + student.toString() + "\n");
-
-
-
                     break;
                 case 2:
                     System.out.print("Enter student ID: ");

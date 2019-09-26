@@ -19,7 +19,6 @@ public class Tools {
                 number = Integer.parseInt(getString());
                 valid = true;
             } catch (NumberFormatException exception) {
-                //System.out.println("Please enter a number.");
                 return number;
             }
         }

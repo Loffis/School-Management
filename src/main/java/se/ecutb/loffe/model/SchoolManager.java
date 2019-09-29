@@ -15,8 +15,14 @@ public class SchoolManager {
         courseDao = new CourseDaoList();
     }
 
-    public boolean addStudent(Student student){
-        
+    public boolean createNewStudent(String name, String email, String address){
+        if(studentDao.findByEmail(email) != null){
+            System.out.println("\nEmail '" + email + "' already exists in the database. '" + name + "' was not added.");
+            return false;
+        }
+        Student newStudent = new Student(name, email, address);
+        studentDao.saveStudent(newStudent);
         return true;
     }
+
 }

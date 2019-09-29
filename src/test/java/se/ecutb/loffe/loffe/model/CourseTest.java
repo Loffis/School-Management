@@ -29,11 +29,9 @@ public class CourseTest {
 
     @Test
     public void add_course_correctly(){
-        String exptected = "Course{id=2, courseName='Java', startDate=2019-10-01, weekDuration=12," +
-                " students=[Student{id=3, name='Loffe', email='a@b.com', address='Home'}, Student{id=4," +
-                " name='Arne', email='a@c.com', address='Away'}]}";
+        String expected = String.format("%n1   Java                  2019-10-01     12        ");
 
-        Assert.assertEquals(exptected, c1.toString());
+        Assert.assertEquals(expected, c1.toString());
     }
 
     @Test
@@ -63,6 +61,7 @@ public class CourseTest {
         List<Student> expectedStudents = new ArrayList<>();
         expectedStudents.add(s1);
         expectedStudents.add(s2);
+        
 
         Assert.assertEquals(expectedStudents, c1.getStudents());
 

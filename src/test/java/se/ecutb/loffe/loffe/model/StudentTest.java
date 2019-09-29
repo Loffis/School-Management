@@ -19,7 +19,7 @@ public class StudentTest {
 
     @Test
     public void add_student_correctly(){
-        String expected = "Student{id=1, name='Loffe', email='mail@mail.com', address='Hemma'}";
+        String expected = "\n1   Loffe               mail@mail.com                 Hemma               ";
 
         Assert.assertEquals(expected, s1.toString());
     }

@@ -51,7 +51,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return String.format("\n%-4d%-20s%-30s%-20s", id, name, email, address);
+        return String.format("\n%-4d%-22s%-35s%-20s", id, name, email, address);
     }
 
     @Override

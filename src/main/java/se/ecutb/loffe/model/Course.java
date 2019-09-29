@@ -1,8 +1,7 @@
 package se.ecutb.loffe.model;
 
-import se.ecutb.loffe.model.Student;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
@@ -21,7 +20,18 @@ public class Course {
     }
 
     public Course(String courseName, LocalDate startDate, int weekDuration) {
-        this(++idCourseCounter, courseName, startDate, weekDuration);
+        this.id = ++idCourseCounter;
+        this.courseName =  courseName;
+        this.startDate = startDate;
+        this.weekDuration = weekDuration;
+    }
+
+    public Course(String courseName, LocalDate startDate, int weekDuration, List<Student> students) {
+        this.id = ++idCourseCounter;
+        this.courseName =  courseName;
+        this.startDate = startDate;
+        this.weekDuration = weekDuration;
+        this.students = students;
     }
 
     public int getId() {
@@ -60,18 +70,40 @@ public class Course {
         this.students = students;
     }
 
-    public void register(Student student){
-
+    public String register(Student student) {
+        if (!students.contains(student)) {
+            students.add(student);
+            return "\n\t" + student + " registered.";
+        } else {
+            return "\n\tStudent + " + student + " not registered.";
+        }
     }
 
-
-    public void unregister(Student student){
-
+    public String unregister(Student student) {
+        if (students.contains(student)) {
+            students.remove(student);
+            return "\n\t" + student + " unregistered.";
+        } else {
+            return "\n\tStudent " + student + " not unregistered.";
+        }
     }
 
-    @Override
+//    @Override
+//    public String toString() {
+//        return "Course{" +
+//                "id=" + id +
+//                ", courseName='" + courseName + '\'' +
+//                ", startDate=" + startDate +
+//                ", weekDuration=" + weekDuration +
+//                ", students=" + students +
+//                '}';
+//    }
+
+
+        @Override
     public String toString() {
-        return String.format("%n%-4s%-22s%-15tF%-10d", id, courseName, startDate, weekDuration);
+        return String.format("%n%-4s%-22s%-35tF%-20d%-23s", getId(), getCourseName(),
+                getStartDate(), getWeekDuration(), getStudents());
     }
 
 }

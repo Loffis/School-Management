@@ -9,11 +9,9 @@ public class StudentDaoList implements StudentDao {
 
     private static List<Student> students;
 
-
     public StudentDaoList(){
         students = new ArrayList<>();
     }
-
 
     @Override
     public Student findById(int id) {
@@ -44,7 +42,6 @@ public class StudentDaoList implements StudentDao {
         return null;
     }
 
-
     @Override
     public List<Student> findByName(String name) {
         List<Student> studentList = new ArrayList<>();
@@ -56,26 +53,13 @@ public class StudentDaoList implements StudentDao {
         return studentList;
     }
 
-
-
     @Override
     public List<Student> findAll() {
         return students;
     }
 
-
-
     @Override
     public boolean deleteStudent(Student student) {
         return students.remove(student);
     }
-
-
-//    Får inte denna att funka?
-//    @Override
-//    public boolean deleteStudent(int id) {
-//        return deleteStudent(findById(id));
-//    }
-
-
 }

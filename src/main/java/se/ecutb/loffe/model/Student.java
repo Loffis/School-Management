@@ -20,7 +20,6 @@ public class Student {
         this(++idCounter, name, email, address);
     }
 
-
     public int getId() {
         return id;
     }
@@ -69,25 +68,5 @@ public class Student {
     public int hashCode() {
         return Objects.hash(id, name, email, address);
     }
-//    @Override
-//    public boolean equals(Object o /* tar in ett object*/) {
-//        // Om this jag(this) är på samma minnesadress som o
-//        if (this == o)
-//            return true;
-//
-//        // om object o är null ELLER är vi samma typ? false
-//        if (o == null || getClass() != o.getClass())
-//            return false;
-//
-//        //
-//        Student student = (Student) o;
-//        return id == student.id &&
-//                Objects.equals(name, student.name);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, name);
-//    }
 
 }

@@ -12,5 +12,4 @@ public interface CourseDao {
     List<Course> findByDate(LocalDate date);
     List<Course> findAll();
     boolean removeCourse(Course course);
-
 }

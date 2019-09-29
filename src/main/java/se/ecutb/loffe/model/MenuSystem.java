@@ -56,7 +56,7 @@ public class MenuSystem {
         courseDao.saveCourse(c5);
     }
 
-    public void run(){
+    public void run() {
         setupBefore();
         boolean isRunning = true;
         while (isRunning) {
@@ -92,7 +92,6 @@ public class MenuSystem {
             }
         }
     }
-
 
 
     private void search() {
@@ -145,9 +144,9 @@ public class MenuSystem {
                     String email = Tools.getString();
                     System.out.print("\tEnter address: ");
                     String address = Tools.getString();
-                    if(!schoolManager.createNewStudent(name, email, address)){
+                    if (!schoolManager.createNewStudent(name, email, address)) {
                         break;
-                    };
+                    }
                     System.out.printf("%nStudent %s", studentDao.findByEmail(email).getName() + " added.\n");
                     System.out.printf("%n%-4s%-22s%-35s%-20s%-13s", "ID", "NAME", "EMAIL", "ADDRESS", ""
                             + studentDao.findByEmail(email) + "\n");
@@ -155,13 +154,13 @@ public class MenuSystem {
                 case 2:
                     System.out.print("\tEnter student ID: ");
                     int idToEdit = Tools.getValidInt();
-                    if (idToEdit < 1){
+                    if (idToEdit < 1) {
                         menuErrorMsg();
                         break;
                     }
                     System.out.printf("%n%-4s%-22s%-35s%-20s%-13s", "ID", "NAME", "EMAIL", "ADDRESS", ""
                             + studentDao.findById(idToEdit) + "\n");
-                    switch (editStudentMenu()){
+                    switch (editStudentMenu()) {
                         case 1:
                             System.out.print("Enter new data: ");
                             String newName = Tools.getString();
@@ -187,14 +186,14 @@ public class MenuSystem {
                 case 3:
                     System.out.print("\tEnter student ID: ");
                     int idToDelete = Tools.getValidInt();
-                    if (idToDelete < 1){
+                    if (idToDelete < 1) {
                         menuErrorMsg();
                         break;
                     }
                     System.out.printf("%n%-4s%-22s%-35s%-20s%-13s", "ID", "NAME", "EMAIL", "ADDRESS", ""
                             + studentDao.findById(idToDelete) + "\n");
                     System.out.print("\tDelete this student? (Y) : ");
-                    if(Tools.getString().equalsIgnoreCase("Y")){
+                    if (Tools.getString().equalsIgnoreCase("Y")) {
                         studentDao.deleteStudent(studentDao.findById(idToDelete));
                         System.out.println("\n\tStudent deleted from database.");
                     } else {
@@ -207,7 +206,6 @@ public class MenuSystem {
                 default:
                     menuErrorMsg();
                     break;
-
             }
         }
     }
@@ -217,17 +215,17 @@ public class MenuSystem {
         while (isCourseMenuRunning) {
             switch (courseMenu()) {
                 case 1:
-                System.out.print("\tEnter course name: ");
-                String newCourseName = Tools.getString();
-                System.out.print("\tEnter start date: ");
-                LocalDate newStartDate = Tools.getValidDate();
-                System.out.print("\tEnter course duration: ");
-                int newDuration = Tools.getValidInt();
-                course = new Course(newCourseName, newStartDate, newDuration);
-                courseDao.saveCourse(course);
-                System.out.printf("%nCourse %s", courseDao.findById(course.getId()).getCourseName() + " added.\n");
-                System.out.printf("%n%-4s%-22s%-35s%-20s%-13s", "ID", "COURSE NAME", "START DATE", "DURATION", "STUDENTS" +
-                        course.toString() + "\n");
+                    System.out.print("\tEnter course name: ");
+                    String newCourseName = Tools.getString();
+                    System.out.print("\tEnter start date: ");
+                    LocalDate newStartDate = Tools.getValidDate();
+                    System.out.print("\tEnter course duration: ");
+                    int newDuration = Tools.getValidInt();
+                    course = new Course(newCourseName, newStartDate, newDuration);
+                    courseDao.saveCourse(course);
+                    System.out.printf("%nCourse %s", courseDao.findById(course.getId()).getCourseName() + " added.\n");
+                    System.out.printf("%n%-4s%-22s%-35s%-20s%-13s", "ID", "COURSE NAME", "START DATE", "DURATION",
+                            "STUDENTS" + course.toString() + "\n");
                     break;
                 case 2:
                     int courseId = 0;
@@ -238,7 +236,7 @@ public class MenuSystem {
                     System.out.printf("%n%-4s%-22s%-35s%-20s%-13s", "ID", "COURSE NAME", "START DATE", "DURATION", "" +
                             courseDao.findById(courseId) + "\n");
                     System.out.print("\tDelete this course? (Y) : ");
-                    if(Tools.getString().equalsIgnoreCase("Y")){
+                    if (Tools.getString().equalsIgnoreCase("Y")) {
                         courseDao.removeCourse(courseDao.findById(courseId));
                         System.out.println("\n\tCourse deleted from database.");
                     } else {
@@ -273,8 +271,8 @@ public class MenuSystem {
 
     private void register() {
         boolean isRegisterMenuRunning = true;
-        while (isRegisterMenuRunning){
-            switch (registerMenu()){
+        while (isRegisterMenuRunning) {
+            switch (registerMenu()) {
                 case 1:
                     System.out.print("\n\tEnter course id: ");
                     int courseId = Tools.getValidInt();
@@ -285,14 +283,10 @@ public class MenuSystem {
                     System.out.printf("%n%-4s%-20s%-30s%-20s%-13s", "ID", "NAME", "EMAIL", "ADDRESS", ""
                             + studentDao.findById(studentId) + "\n");
                     System.out.print("\tRegister this student? (Y) : ");
-                    if(Tools.getString().equalsIgnoreCase("Y")){
+                    if (Tools.getString().equalsIgnoreCase("Y")) {
                         Course newCourse = courseDao.findById(courseId);
                         newCourse.register(studentDao.findById(studentId));
                         System.out.println("\n\t" + studentDao.findById(studentId).getName() + " registered.");
-                        //courseDao.findById(1).register(studentDao.findById(3));
-                        //courseDao.findById(courseId).register(studentDao.findById(studentId));
-                        //courseDao.saveCourse(courseDao.findById(courseId));
-                        // TODO detta funkar inte om man ska registrera student på en NY kurs!
                     }
                     break;
                 case 2:
@@ -305,10 +299,9 @@ public class MenuSystem {
                     System.out.printf("%n%-4s%-20s%-30s%-20s%-13s", "ID", "NAME", "EMAIL", "ADDRESS", ""
                             + studentDao.findById(studentId) + "\n");
                     System.out.print("\tUnregister this student? (Y) : ");
-                    if(Tools.getString().equalsIgnoreCase("Y")){
+                    if (Tools.getString().equalsIgnoreCase("Y")) {
                         courseDao.findById(courseId).unregister(studentDao.findById(studentId));
                         System.out.println("\n\t" + studentDao.findById(studentId).getName() + " unregistered.");
-
                     }
                     break;
 
@@ -326,18 +319,18 @@ public class MenuSystem {
         System.out.println("\n\tPlease enter a valid number. Try again.");
     }
 
-    private int mainMenu(){
+    private int mainMenu() {
         System.out.println("\n\tWelcome to EC Utbildning School Management\n" +
-                           "\n\tToday we have " + studentDao.findAll().size() +
-                           " students and " + courseDao.findAll().size() + " courses.\n" +
-                           "\n\tMAIN MENU" +
-                           "\n\t1) View all courses with registered students" +
-                           "\n\t2) View all students" +
-                           "\n\t3) Search course / student" +
-                           "\n\t4) Edit / add / delete student" +
-                           "\n\t5) Edit / add / delete course" +
-                           "\n\t6) Register / unregister student from course" +
-                           "\n\t9) Quit\n");
+                "\n\tToday we have " + studentDao.findAll().size() +
+                " students and " + courseDao.findAll().size() + " courses.\n" +
+                "\n\tMAIN MENU" +
+                "\n\t1) View all courses with registered students" +
+                "\n\t2) View all students" +
+                "\n\t3) Search course / student" +
+                "\n\t4) Edit / add / delete student" +
+                "\n\t5) Edit / add / delete course" +
+                "\n\t6) Register / unregister student from course" +
+                "\n\t9) Quit\n");
         System.out.print("\tPlease make a choice: ");
         return Tools.getValidInt();
     }

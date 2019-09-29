@@ -24,5 +24,4 @@ public class SchoolManager {
         studentDao.saveStudent(newStudent);
         return true;
     }
-
 }

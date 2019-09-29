@@ -1,6 +1,5 @@
 package se.ecutb.loffe.data;
 
-import se.ecutb.loffe.data.CourseDao;
 import se.ecutb.loffe.model.Course;
 
 import java.time.LocalDate;
@@ -55,7 +54,6 @@ public class CourseDaoList implements CourseDao {
         return courseList;
     }
 
-
     @Override
     public List<Course> findAll() {
         return courses;
@@ -65,6 +63,4 @@ public class CourseDaoList implements CourseDao {
     public boolean removeCourse(Course course) {
         return courses.remove(course);
     }
-
-
 }

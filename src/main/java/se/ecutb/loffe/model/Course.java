@@ -1,7 +1,6 @@
 package se.ecutb.loffe.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
@@ -71,12 +70,8 @@ public class Course {
     }
 
     public String register(Student student) {
-        if (!students.contains(student)) {
             students.add(student);
             return "\n\t" + student + " registered.";
-        } else {
-            return "\n\tStudent + " + student + " not registered.";
-        }
     }
 
     public String unregister(Student student) {
@@ -88,24 +83,11 @@ public class Course {
         }
     }
 
-//    @Override
-//    public String toString() {
-//        return "Course{" +
-//                "id=" + id +
-//                ", courseName='" + courseName + '\'' +
-//                ", startDate=" + startDate +
-//                ", weekDuration=" + weekDuration +
-//                ", students=" + students +
-//                '}';
-//    }
-
-
         @Override
     public String toString() {
         return String.format("%n%-4s%-22s%-35tF%-20d%-23s", getId(), getCourseName(),
                 getStartDate(), getWeekDuration(), getStudents());
     }
-
 }
 
 
